@@ -9,6 +9,7 @@ import java.io.FileReader;
  * @author Leonhard Gahr
  * @author Pascal de Vvries
  */
+// TODO: 24.08.2016 Java-Properties-Datei ansehen 
 public class BmiMain {
 
     public static void main(String[] args) {
@@ -26,7 +27,7 @@ public class BmiMain {
 
             JSONObject jsonObject = (JSONObject) obj;
 
-            System.out.println((String) jsonObject.get(""));
+            System.out.println((String) jsonObject.get("19"));
 
         } catch (Exception e) {
             e.printStackTrace();
