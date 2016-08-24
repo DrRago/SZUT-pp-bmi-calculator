@@ -8,9 +8,8 @@ public enum Sex {
 
 	private final int index;
 
-	private Sex(int index) {
+	Sex(int index) {
 		this.index = index;
-		;
 	}
 
 	/** get a certain index for each sex
