@@ -12,7 +12,6 @@ import java.util.Map;
  * @author Leonhard Gahr
  * @author Pascal de Vvries
  */
-// TODO: 24.08.2016 Java-Properties-Datei ansehen
 public class BmiMain {
     public static Map<String, int[]> who;
     public static Map<String, Integer> nrc;
