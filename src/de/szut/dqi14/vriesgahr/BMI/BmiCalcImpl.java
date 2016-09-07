@@ -120,6 +120,7 @@ public class BmiCalcImpl implements BmiCalc {
      */
     @Override
     public double getIdealWeight() {
+        // TODO: 07.09.2016 19.5 mit idealem BMI in dem Altex ersetzen
         return 19.5 * (size * size);
     }
 }
