@@ -40,6 +40,7 @@ public class BmiMain {
         dgeFemale = getDGE("dge.bmi", "female");
 
         System.out.println(bmi.getCategory());
+        System.out.println(bmi.getIdealWeight());
     }
 
     private static Map<String,double[]> getDGE(String jsonFile, String gender) throws IOException {
