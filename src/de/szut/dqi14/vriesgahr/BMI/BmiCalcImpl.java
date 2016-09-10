@@ -53,7 +53,6 @@ public class BmiCalcImpl implements BmiCalc {
                     }
                 }
             }
-
             else if (Sex.MALE == sex){
                 for (Object o : BmiMain.dgeMale.entrySet()) {
                     Map.Entry current = (Map.Entry) o;
@@ -63,7 +62,6 @@ public class BmiCalcImpl implements BmiCalc {
                 }
             }
         }
-
         else{
             for (Object o : BmiMain.who.entrySet()) {
                 Map.Entry current = (Map.Entry) o;
@@ -166,14 +164,16 @@ public class BmiCalcImpl implements BmiCalc {
 
         int ageValue = 0;
 
-        for (Object o : BmiMain.nrc.entrySet()) {
-            Map.Entry current = (Map.Entry) o;
-            if (age >= ((double[]) current.getValue())[0] && age < ((double[]) current.getValue())[1]){
-                ageValue = Integer.parseInt((String) current.getKey());
+        if (age != 0) {
+            for (Object o : BmiMain.nrc.entrySet()) {
+                Map.Entry current = (Map.Entry) o;
+                if (age >= ((double[]) current.getValue())[0] && age < ((double[]) current.getValue())[1]) {
+                    ageValue = Integer.parseInt((String) current.getKey());
+                }
             }
         }
 
-        if (sex != null && age != 0){
+        if (sex != null) {
             double idealBmi = 0;
             if (Sex.FEMALE == sex) {
                 double[] normalBmi = BmiMain.dgeFemale.get("NORMAL");
@@ -182,28 +182,11 @@ public class BmiCalcImpl implements BmiCalc {
                 double[] normalBmi = BmiMain.dgeMale.get("NORMAL");
                 idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
             }
-            return idealBmi * size * size;
-        }
-        else if (sex != null) {
-            double idealBmi = 0;
-            if (Sex.FEMALE == sex) {
-                double[] normalBmi = BmiMain.dgeFemale.get("NORMAL");
-                idealBmi = (normalBmi[0] + normalBmi[1]) / 2;
-            } else if (Sex.MALE == sex) {
-                double[] normalBmi = BmiMain.dgeMale.get("NORMAL");
-                idealBmi = (normalBmi[0] + normalBmi[1]) / 2;
-            }
-            return idealBmi * size * size;
-        }
-        else if (age != 0) {
-            double[] normalBmi = BmiMain.who.get("NORMAL");
-            double idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
-
             return idealBmi * size * size;
         }
         else {
             double[] normalBmi = BmiMain.who.get("NORMAL");
-            double idealBmi = (normalBmi[0] + normalBmi[1]) / 2;
+            double idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
 
             return idealBmi * size * size;
         }
