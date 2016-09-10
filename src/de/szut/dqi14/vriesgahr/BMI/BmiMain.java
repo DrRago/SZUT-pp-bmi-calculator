@@ -13,10 +13,10 @@ import java.util.Map;
  * @author Pascal de Vvries
  */
 public class BmiMain {
-    public static Map<String, double[]> who;
-    public static Map<String, double[]> nrc;
-    public static Map<String, double[]> dgeMale;
-    public static Map<String, double[]> dgeFemale;
+    static Map<String, double[]> who;
+    static Map<String, double[]> nrc;
+    static Map<String, double[]> dgeMale;
+    static Map<String, double[]> dgeFemale;
 
     /**
      * The entry point of application.
@@ -25,12 +25,6 @@ public class BmiMain {
      * @throws IOException the io exception
      */
     public static void main(String[] args) throws IOException {
-        BmiCalcImpl bmi = new BmiCalcImpl();
-        bmi.setSex(Sex.FEMALE);
-        bmi.setSize(1.82);
-        bmi.setAge(38);
-        bmi.setWeight(63);
-
         who = getMap("who.bmi", new String[] {"UNDERWEIGHT", "NORMAL", "OVERWEIGHT", "OBESE", "SEVERELY_OBESE", "VERY_SEVERELY_OBESE"});
 
         nrc = getMap("nrc.bmi", new String[] {"1", "0", "-1", "-2", "-3", "-4"});
@@ -38,9 +32,6 @@ public class BmiMain {
         dgeMale = getDGE("dge.bmi", "male");
 
         dgeFemale = getDGE("dge.bmi", "female");
-
-        System.out.println(bmi.getCategory());
-        System.out.println(bmi.getIdealWeight());
     }
 
     private static Map<String,double[]> getDGE(String jsonFile, String gender) throws IOException {

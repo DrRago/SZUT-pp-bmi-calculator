@@ -1,19 +1,19 @@
 {
 "male" : [{
-    "UNDERWEIGHT" :[0, 19.99],
-    "NORMAL" :[20, 24.99],
-    "OVERWEIGHT" :[25, 29.99],
-    "OBESE" :[30, 34.99],
-    "SEVERELY_OBESE" :[35, 39.99],
+    "UNDERWEIGHT" :[0, 20],
+    "NORMAL" :[20, 25],
+    "OVERWEIGHT" :[25, 30],
+    "OBESE" :[30, 35],
+    "SEVERELY_OBESE" :[35, 40],
     "VERY_SEVERELY_OBESE" : [40, 9999]
     }],
 
 "female" : [{
-    "UNDERWEIGHT" :[0, 18.99],
-    "NORMAL" :[19, 23.99],
-    "OVERWEIGHT" :[24, 29.99],
-    "OBESE" :[30, 34.99],
-    "SEVERELY_OBESE" :[35, 39.99],
+    "UNDERWEIGHT" :[0, 19],
+    "NORMAL" :[19, 24],
+    "OVERWEIGHT" :[24, 30],
+    "OBESE" :[30, 35],
+    "SEVERELY_OBESE" :[35, 40],
     "VERY_SEVERELY_OBESE" : [40, 9999]
     }]
 }
