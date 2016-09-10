@@ -1,10 +1,17 @@
 package de.szut.dqi14.vriesgahr.BMI;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import javax.json.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 
 /**
  * The type Bmi main.
@@ -12,7 +19,7 @@ import java.util.Map;
  * @author Leonhard Gahr
  * @author Pascal de Vvries
  */
-public class BmiMain {
+public class BmiMain extends Application {
     static Map<String, double[]> who;
     static Map<String, double[]> nrc;
     static Map<String, double[]> dgeMale;
@@ -32,6 +39,16 @@ public class BmiMain {
         dgeMale = getDGE("dge.bmi", "male");
 
         dgeFemale = getDGE("dge.bmi", "female");
+
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("Bmi.fxml"));
+        primaryStage.setTitle("Bmi calculator!");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 
     private static Map<String,double[]> getDGE(String jsonFile, String gender) throws IOException {
