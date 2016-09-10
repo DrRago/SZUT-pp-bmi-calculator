@@ -1,0 +1,8 @@
+{
+"untergewicht" :[0, 18.49],
+"normalgewicht" :[18.5, 24.99],
+"übergewicht" :[25, 29.99],
+"starkesÜbergewicht" :[30, 34.99],
+"adipositasII" :[35, 39.99],
+"adipositasIII" : [40, 9999]
+}

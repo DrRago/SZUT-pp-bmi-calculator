@@ -1,0 +1,19 @@
+{
+"male" : [{
+    "untergewicht" :[0, 19.99],
+    "normalgewicht" :[20, 24.99],
+    "übergewicht" :[25, 29.99],
+    "starkesÜbergewicht" :[30, 34.99],
+    "adipositasII" :[35, 39.99],
+    "adipositasIII" : [40, 9999]
+    }],
+
+"female" : [{
+    "untergewicht" :[0, 18.99],
+    "normalgewicht" :[19, 23.99],
+    "übergewicht" :[24, 29.99],
+    "starkesÜbergewicht" :[30, 34.99],
+    "adipositasII" :[35, 39.99],
+    "adipositasIII" : [40, 9999]
+    }]
+}
