@@ -13,10 +13,10 @@ import java.util.Map;
  * @author Pascal de Vvries
  */
 public class BmiMain {
-    public static Map<String, int[]> who;
-    public static Map<String, Integer> nrc;
-    public static Map<String, int[]> dgeMale;
-    public static Map<String, int[]> dgeFemale;
+    public static Map<String, double[]> who;
+    public static Map<String, double[]> nrc;
+    public static Map<String, double[]> dgeMale;
+    public static Map<String, double[]> dgeFemale;
 
     /**
      * The entry point of application.
@@ -28,26 +28,28 @@ public class BmiMain {
         BmiCalcImpl bmi = new BmiCalcImpl();
         bmi.setSex(Sex.FEMALE);
         bmi.setSize(1.82);
-        bmi.setAge(28);
-        bmi.setWeight(80.0);
+        bmi.setAge(38);
+        bmi.setWeight(63);
 
-        who = getWHO("who.bmi");
+        who = getMap("who.bmi", new String[] {"UNDERWEIGHT", "NORMAL", "OVERWEIGHT", "OBESE", "SEVERELY_OBESE", "VERY_SEVERELY_OBESE"});
 
-        nrc = getNRC("nrc.bmi");
+        nrc = getMap("nrc.bmi", new String[] {"1", "0", "-1", "-2", "-3", "-4"});
 
         dgeMale = getDGE("dge.bmi", "male");
 
         dgeFemale = getDGE("dge.bmi", "female");
+
+        System.out.println(bmi.getCategory());
     }
 
-    private static Map<String,int[]> getDGE(String jsonFile, String gender) throws IOException {
-        Map<String, int[]> dgeMale = new HashMap<>();
+    private static Map<String,double[]> getDGE(String jsonFile, String gender) throws IOException {
+        Map<String, double[]> dgeMale = new HashMap<>();
 
         try (FileInputStream is = new FileInputStream(jsonFile) ) {
             try (JsonReader rdr = Json.createReader(is)) {
 
                 JsonObject obj = rdr.readObject();
-                String[] weights = new String[] {"untergewicht", "normalgewicht", "übergewicht", "starkesÜbergewicht", "adipositasII", "adipositasIII"};
+                String[] weights = new String[] {"UNDERWEIGHT", "NORMAL", "OVERWEIGHT", "OBESE", "SEVERELY_OBESE", "VERY_SEVERELY_OBESE"};
 
                 JsonArray maleData = obj.getJsonArray(gender);
 
@@ -56,7 +58,7 @@ public class BmiMain {
 
                         JsonArray results = res.getJsonArray(weight);
 
-                        int[] values = new int[]{results.getJsonNumber(0).intValue(), results.getJsonNumber(1).intValue()};
+                        double[] values = new double[]{results.getJsonNumber(0).doubleValue(), results.getJsonNumber(1).doubleValue()};
                         dgeMale.put(weight, values);
                     }
                 }
@@ -65,45 +67,23 @@ public class BmiMain {
         return dgeMale;
     }
 
-    private static Map<String,Integer> getNRC(String jsonFile) throws IOException {
-        Map<String, Integer> nrc = new HashMap<>();
+    private static Map<String, double[]> getMap(String jsonFile, String[] weights) throws IOException {
+        Map<String, double[]> map = new HashMap<>();
 
         try (FileInputStream is = new FileInputStream(jsonFile) ) {
             try (JsonReader rdr = Json.createReader(is)) {
 
                 JsonObject obj = rdr.readObject();
-                String[] weights = new String[] {"19", "25", "35", "45", "55", "65"};
-
-                for (String weight: weights) {
-
-                    JsonNumber results = obj.getJsonNumber(weight);
-
-                    int value = results.intValue();
-                    nrc.put(weight, value);
-                }
-            }
-        }
-        return nrc;
-    }
-
-    private static Map<String, int[]> getWHO(String jsonFile) throws IOException {
-        Map<String, int[]> who = new HashMap<>();
-
-        try (FileInputStream is = new FileInputStream(jsonFile) ) {
-            try (JsonReader rdr = Json.createReader(is)) {
-
-                JsonObject obj = rdr.readObject();
-                String[] weights = new String[] {"untergewicht", "normalgewicht", "übergewicht", "starkesÜbergewicht", "adipositasII", "adipositasIII"};
 
                 for (String weight: weights) {
 
                     JsonArray results = obj.getJsonArray(weight);
 
-                    int[] values = new int[]{results.getJsonNumber(0).intValue(), results.getJsonNumber(1).intValue()};
-                    who.put(weight, values);
+                    double[] values = new double[]{results.getJsonNumber(0).doubleValue(), results.getJsonNumber(1).doubleValue()};
+                    map.put(weight, values);
                 }
             }
         }
-        return who;
+        return map;
     }
 }

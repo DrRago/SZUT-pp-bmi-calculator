@@ -1,8 +1,8 @@
 {
-"untergewicht" :[0, 18.49],
-"normalgewicht" :[18.5, 24.99],
-"übergewicht" :[25, 29.99],
-"starkesÜbergewicht" :[30, 34.99],
-"adipositasII" :[35, 39.99],
-"adipositasIII" : [40, 9999]
+"UNDERWEIGHT" :[0, 18.5],
+"NORMAL" :[18.5, 25],
+"OVERWEIGHT" :[25, 30],
+"OBESE" :[30, 35],
+"SEVERELY_OBESE" :[35, 40],
+"VERY_SEVERELY_OBESE" : [40, 9999]
 }

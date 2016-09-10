@@ -1,11 +1,12 @@
 package de.szut.dqi14.vriesgahr.BMI;
 
+import java.util.Map;
+
 /**
  * @author Pascal de Vries
  * @author Leonhard Gahr
  */
 
-// TODO: 24.08.2016 add config file 
 public class BmiCalcImpl implements BmiCalc {
 
     private Sex sex;
@@ -30,6 +31,89 @@ public class BmiCalcImpl implements BmiCalc {
      */
     @Override
     public WeightCategory getCategory() {
+        if (size == 0.0 | weight == 0.0) throw new IllegalArgumentException("Please make sure that your weight and your size is entered");
+
+        double bmi = getBmi();
+
+        if (sex != null && age != 0){
+            int ageValue = 0;
+
+            for (Object o : BmiMain.nrc.entrySet()) {
+                Map.Entry current = (Map.Entry) o;
+                if (age >= ((double[]) current.getValue())[0] && age < ((double[]) current.getValue())[1]){
+                    ageValue = Integer.parseInt((String) current.getKey());
+                }
+            }
+
+            bmi = bmi + ageValue;
+
+            if (Sex.FEMALE == sex){
+                for (Object o : BmiMain.dgeFemale.entrySet()) {
+                    Map.Entry current = (Map.Entry) o;
+                    if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
+                        return WeightCategory.valueOf((String) current.getKey());
+                    }
+                }
+            }
+
+            else if (Sex.MALE == sex){
+                for (Object o : BmiMain.dgeMale.entrySet()) {
+                    Map.Entry current = (Map.Entry) o;
+                    if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
+                        return WeightCategory.valueOf((String) current.getKey());
+                    }
+                }
+            }
+        }
+
+        else if (sex != null) {
+            if (Sex.FEMALE == sex){
+                for (Object o : BmiMain.dgeFemale.entrySet()) {
+                    Map.Entry current = (Map.Entry) o;
+                    if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
+                        return WeightCategory.valueOf((String) current.getKey());
+                    }
+                }
+            }
+
+            else if (Sex.MALE == sex){
+                for (Object o : BmiMain.dgeMale.entrySet()) {
+                    Map.Entry current = (Map.Entry) o;
+                    if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
+                        return WeightCategory.valueOf((String) current.getKey());
+                    }
+                }
+            }
+        }
+
+        else if (age != 0) {
+            int ageValue = 0;
+
+            for (Object o : BmiMain.nrc.entrySet()) {
+                Map.Entry current = (Map.Entry) o;
+                if (age >= ((double[]) current.getValue())[0] && age < ((double[]) current.getValue())[1]){
+                    ageValue = Integer.parseInt((String) current.getKey());
+                }
+            }
+
+            bmi = bmi + ageValue;
+
+            for (Object o : BmiMain.who.entrySet()) {
+                Map.Entry current = (Map.Entry) o;
+                if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
+                    return WeightCategory.valueOf((String) current.getKey());
+                }
+            }
+        }
+
+        else{
+            for (Object o : BmiMain.who.entrySet()) {
+                Map.Entry current = (Map.Entry) o;
+                if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
+                    return WeightCategory.valueOf((String) current.getKey());
+                }
+            }
+        }
         return null;
     }
 
