@@ -39,8 +39,6 @@ public class BmiMain extends Application {
         dgeMale = getDGE("dge.bmi", "male");
 
         dgeFemale = getDGE("dge.bmi", "female");
-
-        launch(args);
     }
 
     @Override
