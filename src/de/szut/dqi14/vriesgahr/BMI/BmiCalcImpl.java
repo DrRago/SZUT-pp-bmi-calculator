@@ -176,17 +176,17 @@ public class BmiCalcImpl implements BmiCalc {
         if (sex != null) {
             double idealBmi = 0;
             if (Sex.FEMALE == sex) {
-                double[] normalBmi = BmiMain.dgeFemale.get("NORMAL");
-                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
+                double[] normalBmi = {BmiMain.dgeFemale.get("NORMAL")[0] + (ageValue * -1), BmiMain.dgeFemale.get("NORMAL")[1] + (ageValue * -1)};
+                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2);
             } else if (Sex.MALE == sex) {
-                double[] normalBmi = BmiMain.dgeMale.get("NORMAL");
-                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
+                double[] normalBmi = {BmiMain.dgeMale.get("NORMAL")[0] + (ageValue * -1), BmiMain.dgeMale.get("NORMAL")[1] + (ageValue * -1)};
+                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2);
             }
             return idealBmi * size * size;
         }
         else {
-            double[] normalBmi = BmiMain.who.get("NORMAL");
-            double idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
+            double[] normalBmi = {BmiMain.dgeMale.get("NORMAL")[0] + (ageValue * -1), BmiMain.dgeMale.get("NORMAL")[1] + (ageValue * -1)};
+            double idealBmi = ((normalBmi[0] + normalBmi[1]) / 2);
 
             return idealBmi * size * size;
         }

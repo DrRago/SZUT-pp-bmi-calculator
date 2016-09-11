@@ -3,18 +3,9 @@ package de.szut.dqi14.vriesgahr.BMI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
-import java.text.ParseException;
-import java.text.StringCharacterIterator;
-
-import static jdk.nashorn.internal.objects.NativeMath.round;
-
-/**
- * Created by pasca on 10.09.2016.
- */
 public class Controller {
 
     @FXML
@@ -56,8 +47,8 @@ public class Controller {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Your BMI score");
                 alert.setHeaderText("Your Results:");
-                alert.setContentText("Your BMI is: " + (Math.round(bmiCalc.getBmi() * 100) / 100) + "\n" + "With this BMI you are in the BMI category: " +
-                        bmiCalc.getCategory() + "\n" + "Your Ideal weight would be around: " + (Math.round(bmiCalc.getIdealWeight() * 100) / 100) + "kg");
+                alert.setContentText("Your BMI is: " + (Math.round(bmiCalc.getBmi() * 100) / 100.0f) + "\n" + "With this BMI you are in the BMI category: " +
+                        bmiCalc.getCategory() + "\n" + "Your Ideal weight would be around: " + (Math.round(bmiCalc.getIdealWeight() * 100) / 100.0f) + "kg");
                 alert.showAndWait();
             }
             catch (NumberFormatException e) {
