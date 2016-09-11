@@ -1,6 +1,5 @@
 package de.szut.dqi14.vriesgahr.BMI;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -20,7 +19,7 @@ public class Controller {
     @FXML
     private ChoiceBox choiceSex;
 
-    public void buttonActionEvent(ActionEvent actionEvent) {
+    public void buttonActionEvent() {
         if (textWeight.getText().equals("") | textSize.getText().equals("")){
             errorAlert("Please enter your Size and Weight");
         }
