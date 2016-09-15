@@ -15,10 +15,14 @@
                 <ChoiceBox fx:id="choiceSex" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
+                            <String fx:value= "" />
                             <String fx:value="MALE" />
                             <String fx:value="FEMALE" />
                         </FXCollections>
                     </items>
+                    <value>
+                        <String fx:value="" />
+                    </value>
                 </ChoiceBox>
                 <TextField fx:id="textSize" onAction="#buttonActionEvent" promptText="Size in Meter" />
                 <TextField fx:id="textWeight" onAction="#buttonActionEvent" promptText="Weight in kg" GridPane.columnIndex="1" />

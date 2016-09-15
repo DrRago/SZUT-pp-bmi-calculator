@@ -33,7 +33,7 @@ public class Controller {
                     bmiCalc.setAge(age);
                 }
 
-                if (choiceSex.getValue() != null && choiceSex.getValue().equals("FEMALE") | choiceSex.getValue().equals("MALE")){
+                if (choiceSex.getValue() != "" && choiceSex.getValue().equals("FEMALE") | choiceSex.getValue().equals("MALE")){
                     bmiCalc.setSex(Sex.valueOf((String) choiceSex.getValue()));
                 }
 
