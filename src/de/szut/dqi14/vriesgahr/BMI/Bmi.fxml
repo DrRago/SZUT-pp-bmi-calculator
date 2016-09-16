@@ -12,10 +12,10 @@
     <children>
         <GridPane>
             <children>
-                <ChoiceBox fx:id="choiceSex" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <ChoiceBox fx:id="choiceSex" prefHeight="25.0" prefWidth="151.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
-                            <String fx:value= "" />
+                            <String fx:value="" />
                             <String fx:value="MALE" />
                             <String fx:value="FEMALE" />
                         </FXCollections>
@@ -29,6 +29,6 @@
                 <TextField fx:id="textAge" onAction="#buttonActionEvent" promptText="Age" GridPane.rowIndex="1" />
             </children>
         </GridPane>
-        <Button fx:id="buttonSubmit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#buttonActionEvent" text="Calcualte your BMI" />
+        <Button fx:id="buttonSubmit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonActionEvent" prefHeight="25.0" prefWidth="300.0" text="Calcualte your BMI" />
     </children>
 </VBox>
