@@ -41,14 +41,6 @@ public class BmiMain extends Application {
         dgeFemale = getDGE("dge.bmi", "female");
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Bmi.fxml"));
-        primaryStage.setTitle("Bmi calculator!");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-    }
-
     private static Map<String,double[]> getDGE(String jsonFile, String gender) throws IOException {
         Map<String, double[]> dgeMale = new HashMap<>();
 
