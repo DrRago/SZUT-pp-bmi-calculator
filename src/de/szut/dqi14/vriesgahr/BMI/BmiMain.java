@@ -26,9 +26,6 @@ public class BmiMain {
      * @throws IOException the io exception
      */
     public static void main(String[] args) throws IOException {
-
-
-
         who = getMap("who.bmi", new String[] {"UNDERWEIGHT", "NORMAL", "OVERWEIGHT", "OBESE", "SEVERELY_OBESE", "VERY_SEVERELY_OBESE"});
 
         nrc = getMap("nrc.bmi", new String[] {"1", "0", "-1", "-2", "-3", "-4"});
