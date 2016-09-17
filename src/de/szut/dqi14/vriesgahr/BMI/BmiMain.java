@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import javax.json.*;
@@ -46,6 +47,8 @@ public class BmiMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Bmi.fxml"));
+
+        primaryStage.getIcons().add(new Image("file:icon.png"));
 
         primaryStage.setTitle("Bmi calculator!");
         primaryStage.setScene(new Scene(root));
