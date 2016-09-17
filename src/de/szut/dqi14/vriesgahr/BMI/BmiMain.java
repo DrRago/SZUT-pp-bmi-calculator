@@ -1,11 +1,5 @@
 package de.szut.dqi14.vriesgahr.BMI;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import javax.json.*;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,7 +13,7 @@ import java.util.Map;
  * @author Leonhard Gahr
  * @author Pascal de Vvries
  */
-public class BmiMain extends Application {
+public class BmiMain {
     static Map<String, double[]> who;
     static Map<String, double[]> nrc;
     static Map<String, double[]> dgeMale;
@@ -32,6 +26,9 @@ public class BmiMain extends Application {
      * @throws IOException the io exception
      */
     public static void main(String[] args) throws IOException {
+
+
+
         who = getMap("who.bmi", new String[] {"UNDERWEIGHT", "NORMAL", "OVERWEIGHT", "OBESE", "SEVERELY_OBESE", "VERY_SEVERELY_OBESE"});
 
         nrc = getMap("nrc.bmi", new String[] {"1", "0", "-1", "-2", "-3", "-4"});
