@@ -21,6 +21,7 @@ public class BmiCalcImpl implements BmiCalc {
      */
     @Override
     public double getBmi() {
+        if (size == 0.0 | weight == 0.0) throw new IllegalArgumentException("Please make sure that your weight and your size is entered");
         return weight/(size*size);
     }
 
@@ -28,24 +29,31 @@ public class BmiCalcImpl implements BmiCalc {
      * current Weight Category
      *
      * @return current weight category
+     *
+     * @throws IllegalArgumentException if required arguments are missing
      */
     @Override
     public WeightCategory getCategory() {
-        if (size == 0.0 | weight == 0.0) throw new IllegalArgumentException("Please make sure that your weight and your size is entered");
+        if (getSize() == 0.0 | getWeight() == 0.0) throw new IllegalArgumentException("Please make sure that your weight and your size is entered"); // throw exception if required arguments are missing
 
         double bmi = getBmi();
 
-        if (age != 0) {
+        /* change the bmi in reference to the age instead of changing the borders of the weightcategories */
+        if (getAge() != 0) {
+            Map.Entry current;
+
+            /* iterate through the map of the nrc table */
             for (Object o : BmiMain.nrc.entrySet()) {
-                Map.Entry current = (Map.Entry) o;
-                if (age >= ((double[]) current.getValue())[0] && age < ((double[]) current.getValue())[1]) {
+                current = (Map.Entry) o;
+                if (getAge() >= ((double[]) current.getValue())[0] && getAge() < ((double[]) current.getValue())[1]) {
                     bmi = bmi + Integer.parseInt((String) current.getKey());
                 }
             }
         }
 
-        if (sex != null){
-            if (Sex.FEMALE == sex){
+        /* check in which weightcategorie the bmi belongs for male or female in the dge table */
+        if (getSex() != null){
+            if (Sex.FEMALE == getSex()){
                 for (Object o : BmiMain.dgeFemale.entrySet()) {
                     Map.Entry current = (Map.Entry) o;
                     if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
@@ -53,7 +61,7 @@ public class BmiCalcImpl implements BmiCalc {
                     }
                 }
             }
-            else if (Sex.MALE == sex){
+            else if (Sex.MALE == getSex()){
                 for (Object o : BmiMain.dgeMale.entrySet()) {
                     Map.Entry current = (Map.Entry) o;
                     if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
@@ -62,7 +70,8 @@ public class BmiCalcImpl implements BmiCalc {
                 }
             }
         }
-        else{
+        /* check in which weightcategorie the bmi belongs for no gender in the who table */
+        else {
             for (Object o : BmiMain.who.entrySet()) {
                 Map.Entry current = (Map.Entry) o;
                 if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
@@ -80,7 +89,7 @@ public class BmiCalcImpl implements BmiCalc {
      */
     @Override
     public Sex getSex() {
-        return sex;
+        return this.sex;
     }
 
     /**
@@ -120,7 +129,7 @@ public class BmiCalcImpl implements BmiCalc {
      */
     @Override
     public int getAge() {
-        return age;
+        return this.age;
     }
 
     /**
@@ -140,7 +149,7 @@ public class BmiCalcImpl implements BmiCalc {
      */
     @Override
     public double getWeight() {
-        return weight;
+        return this.weight;
     }
 
     /**
@@ -160,35 +169,43 @@ public class BmiCalcImpl implements BmiCalc {
      */
     @Override
     public double getIdealWeight() {
-        if (size == 0.0) throw new IllegalArgumentException("Please make sure that your size is entered");
+        if (getSize() == 0.0) throw new IllegalArgumentException("Please make sure that your size is entered"); // throw exception if the required argument is missing
 
+        /* save the value to change the bmi in reference to the age */
         int ageValue = 0;
 
-        if (age != 0) {
+        if (getAge() != 0) {
             for (Object o : BmiMain.nrc.entrySet()) {
                 Map.Entry current = (Map.Entry) o;
-                if (age >= ((double[]) current.getValue())[0] && age < ((double[]) current.getValue())[1]) {
+                if (getAge() >= ((double[]) current.getValue())[0] && getAge() < ((double[]) current.getValue())[1]) {
                     ageValue = Integer.parseInt((String) current.getKey());
                 }
             }
         }
 
-        if (sex != null) {
-            double idealBmi = 0;
-            if (Sex.FEMALE == sex) {
-                double[] normalBmi = {BmiMain.dgeFemale.get("NORMAL")[0] + (ageValue * -1), BmiMain.dgeFemale.get("NORMAL")[1] + (ageValue * -1)};
-                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2);
-            } else if (Sex.MALE == sex) {
-                double[] normalBmi = {BmiMain.dgeMale.get("NORMAL")[0] + (ageValue * -1), BmiMain.dgeMale.get("NORMAL")[1] + (ageValue * -1)};
-                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2);
+        double idealBmi = 0;
+
+        /* get the ideal bmi for male and female */
+        if (getSex() != null) {
+            if (Sex.FEMALE == getSex()) {
+                double[] normalBmi = BmiMain.dgeFemale.get("NORMAL");
+
+                /* calculate the average of the borders of the ideal bmi and change the ideal bmi according to the age with the age value */
+                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
+            } else if (Sex.MALE == getSex()) {
+                double[] normalBmi = BmiMain.dgeMale.get("NORMAL");
+
+                /* calculate the average of the borders of the ideal bmi and change the ideal bmi according to the age with the age value */
+                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
             }
-            return idealBmi * size * size;
         }
         else {
-            double[] normalBmi = {BmiMain.dgeMale.get("NORMAL")[0] + (ageValue * -1), BmiMain.dgeMale.get("NORMAL")[1] + (ageValue * -1)};
-            double idealBmi = ((normalBmi[0] + normalBmi[1]) / 2);
+            double[] normalBmi = BmiMain.who.get("NORMAL");
 
-            return idealBmi * size * size;
+            /* calculate the average of the borders of the ideal bmi and change the ideal bmi according to the age with the age value */
+            idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
+
         }
+        return idealBmi * getSize() * getSize(); // calculate the ideal weight with the size and the ideal bmi see
     }
 }
