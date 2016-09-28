@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="265.0" y="461.0">de.szut.dqi14.vriesgahr.BMI.Sex</node>
+    <node x="0.0" y="233.0">de.szut.dqi14.vriesgahr.BMI.BmiCalcImpl</node>
+    <node x="0.0" y="0.0">de.szut.dqi14.vriesgahr.BMI.BmiCalc</node>
+    <node x="0.0" y="461.0">de.szut.dqi14.vriesgahr.BMI.WeightCategory</node>
+    <node x="353.0" y="0.0">de.szut.dqi14.vriesgahr.BMI.BmiMain</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="de.szut.dqi14.vriesgahr.BMI.BmiMain" target="de.szut.dqi14.vriesgahr.BMI.BmiCalcImpl">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="de.szut.dqi14.vriesgahr.BMI.BmiCalcImpl" target="de.szut.dqi14.vriesgahr.BMI.Sex">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="de.szut.dqi14.vriesgahr.BMI.BmiCalcImpl" target="de.szut.dqi14.vriesgahr.BMI.BmiCalc">
+      <point x="0.0" y="-91.5" />
+      <point x="0.0" y="91.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="337.0" y="311.0" />
+  <SelectedNodes>
+    <node>de.szut.dqi14.vriesgahr.BMI.BmiCalcImpl</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
