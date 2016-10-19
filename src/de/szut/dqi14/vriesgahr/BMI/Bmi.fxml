@@ -5,7 +5,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.szut.dqi14.vriesgahr.BMI.Controller">
@@ -24,9 +27,18 @@
                         <String fx:value="" />
                     </value>
                 </ChoiceBox>
-                <TextField fx:id="textSize" onAction="#buttonActionEvent" promptText="Size in Meter" />
-                <TextField fx:id="textWeight" onAction="#buttonActionEvent" promptText="Weight in kg" GridPane.columnIndex="1" />
-                <TextField fx:id="textAge" onAction="#buttonActionEvent" promptText="Age" GridPane.rowIndex="1" />
+                <TextField fx:id="textSize" onAction="#buttonActionEvent" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyPress" promptText="Size in meter">
+               <tooltip>
+                  <Tooltip text="Enter positive size in meters" />
+               </tooltip></TextField>
+                <TextField fx:id="textWeight" onAction="#buttonActionEvent" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyPress" promptText="Weight in kg" GridPane.columnIndex="1">
+               <tooltip>
+                  <Tooltip text="Enter positive weight in kg" />
+               </tooltip></TextField>
+                <TextField fx:id="textAge" onAction="#buttonActionEvent" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyPress" promptText="Age in years" GridPane.rowIndex="1">
+               <tooltip>
+                  <Tooltip text="Enter positive age in years" />
+               </tooltip></TextField>
             </children>
         </GridPane>
         <Button fx:id="buttonSubmit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonActionEvent" prefHeight="25.0" prefWidth="300.0" text="Calcualte your BMI" />

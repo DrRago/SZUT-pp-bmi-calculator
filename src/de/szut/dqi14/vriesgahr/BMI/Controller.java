@@ -20,7 +20,7 @@ public class Controller {
     private ChoiceBox choiceSex;
 
     public void buttonActionEvent() {
-        if (textWeight.getText().equals("") | textSize.getText().equals("")){
+        if (textWeight.getText().isEmpty() | textSize.getText().isEmpty()){
             errorAlert("Please enter your Size and Weight");
         }
         else {
@@ -62,5 +62,30 @@ public class Controller {
         alert.setHeaderText("");
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void handleKeyPress() {
+        String input = textSize.getText();
+        if (!input.matches("[0-9]*(\\.|,)?[0-9]*")){
+            textSize.setText(input.replaceAll("[a-zA-Z-]", ""));
+        }
+        input = textSize.getText();
+        String newInput = "";
+        boolean found = false;
+        for (int i = 0; i < input.length(); i++){
+            char c = input.charAt(i);
+
+            if (c == ',' || c == '.') {
+                if (!found) {
+                    found = true;
+                    newInput += c;
+                }
+            }
+            else {
+                newInput += c;
+            }
+        }
+        textSize.setText(newInput);
+        textSize.positionCaret(newInput.length());
     }
 }
