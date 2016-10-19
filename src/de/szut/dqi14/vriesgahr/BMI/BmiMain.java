@@ -42,16 +42,15 @@ public class BmiMain {
         /* set parameters for the calculation */
         BmiCalcImpl bmiCalc = new BmiCalcImpl();
 
-        bmiCalc.setAge(0);
-        bmiCalc.setSize(0);
+        bmiCalc.setAge(55);
+        bmiCalc.setSize(1.82);
         bmiCalc.setWeight(0);
-        bmiCalc.setSex(null);
+        bmiCalc.setSex(Sex.MALE);
 
         /* print calculations */
         System.out.println("BMI: " + bmiCalc.getBmi());
         System.out.println("Weight Category: " + bmiCalc.getCategory());
         System.out.println("Ideal Weight: " + bmiCalc.getIdealWeight());
-
     }
 
     /**

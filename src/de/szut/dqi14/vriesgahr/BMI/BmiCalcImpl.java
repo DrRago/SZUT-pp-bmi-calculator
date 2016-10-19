@@ -191,19 +191,19 @@ public class BmiCalcImpl implements BmiCalc {
                 double[] normalBmi = BmiMain.dgeFemale.get("NORMAL");
 
                 /* calculate the average of the borders of the ideal bmi and change the ideal bmi according to the age with the age value */
-                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
+                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) - ageValue;
             } else if (Sex.MALE == getSex()) {
                 double[] normalBmi = BmiMain.dgeMale.get("NORMAL");
 
                 /* calculate the average of the borders of the ideal bmi and change the ideal bmi according to the age with the age value */
-                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
+                idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) - ageValue;
             }
         }
         else {
             double[] normalBmi = BmiMain.who.get("NORMAL");
 
             /* calculate the average of the borders of the ideal bmi and change the ideal bmi according to the age with the age value */
-            idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) + ageValue;
+            idealBmi = ((normalBmi[0] + normalBmi[1]) / 2) - ageValue;
 
         }
         return idealBmi * getSize() * getSize(); // calculate the ideal weight with the size and the ideal bmi see
