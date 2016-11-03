@@ -26,21 +26,24 @@
                     <value>
                         <String fx:value="" />
                     </value>
+                    <tooltip>
+                        <Tooltip text="Enter your gender" />
+                    </tooltip>
                 </ChoiceBox>
-                <TextField fx:id="textSize" onAction="#buttonActionEvent" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyPress" promptText="Size in meter">
+                <TextField fx:id="textSize" onAction="#buttonActionEvent" promptText="Size in meter">
                <tooltip>
                   <Tooltip text="Enter positive size in meters" />
                </tooltip></TextField>
-                <TextField fx:id="textWeight" onAction="#buttonActionEvent" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyPress" promptText="Weight in kg" GridPane.columnIndex="1">
+                <TextField fx:id="textWeight" onAction="#buttonActionEvent" promptText="Weight in kg" GridPane.columnIndex="1">
                <tooltip>
                   <Tooltip text="Enter positive weight in kg" />
                </tooltip></TextField>
-                <TextField fx:id="textAge" onAction="#buttonActionEvent" onKeyPressed="#handleKeyPress" onKeyReleased="#handleKeyPress" promptText="Age in years" GridPane.rowIndex="1">
+                <TextField fx:id="textAge" onAction="#buttonActionEvent" promptText="Age in years" GridPane.rowIndex="1">
                <tooltip>
                   <Tooltip text="Enter positive age in years" />
                </tooltip></TextField>
             </children>
         </GridPane>
-        <Button fx:id="buttonSubmit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonActionEvent" prefHeight="25.0" prefWidth="300.0" text="Calcualte your BMI" />
+        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#buttonActionEvent" prefHeight="25.0" prefWidth="300.0" text="Calcualte your BMI" />
     </children>
 </VBox>

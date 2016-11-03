@@ -46,7 +46,13 @@ public class BmiMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Bmi.fxml"));
+
+        final FXMLLoader loader = new FXMLLoader();
+
+        Parent root = loader.load(getClass().getResource("Bmi.fxml").openStream());
+
+        Controller controller = loader.getController();
+        controller.init();
 
         primaryStage.getIcons().add(new Image("file:icon.png"));
 

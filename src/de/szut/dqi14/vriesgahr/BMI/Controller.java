@@ -64,28 +64,24 @@ public class Controller {
         alert.showAndWait();
     }
 
-    public void handleKeyPress() {
-        String input = textSize.getText();
-        if (!input.matches("[0-9]*(\\.|,)?[0-9]*")){
-            textSize.setText(input.replaceAll("[a-zA-Z-]", ""));
-        }
-        input = textSize.getText();
-        String newInput = "";
-        boolean found = false;
-        for (int i = 0; i < input.length(); i++){
-            char c = input.charAt(i);
+    void init() {
+        textAge.textProperty().addListener((o, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textAge.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
 
-            if (c == ',' || c == '.') {
-                if (!found) {
-                    found = true;
-                    newInput += c;
-                }
+        textWeight.textProperty().addListener((o, oldValue, newValue) -> {
+            if (!newValue.matches("[0-9]*[.|,][0-9]*|[0-9]*[.|,]|[0-9]*")) {
+                textWeight.setText(oldValue);
             }
-            else {
-                newInput += c;
+        });
+
+
+        textSize.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[0-9]*[.|,][0-9]*|[0-9]*[.|,]|[0-9]*")) {
+                textSize.setText(oldValue);
             }
-        }
-        textSize.setText(newInput);
-        textSize.positionCaret(newInput.length());
+        });
     }
 }
