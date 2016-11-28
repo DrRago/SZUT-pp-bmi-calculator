@@ -28,14 +28,20 @@ public class BmiCalcImpl implements BmiCalc {
      * current Weight Category
      *
      * @return current weight category
+     *
+     * @throws IllegalArgumentException if required arguments are missing
      */
     @Override
     public WeightCategory getCategory() {
+        // Throw exception if required arguments are missing
         if (size == 0.0 | weight == 0.0) throw new IllegalArgumentException("Please make sure that your weight and your size is entered");
 
         double bmi = getBmi();
 
+        // change the bmi in reference to the age instead of changing the borders of the weightcategories
         if (age != 0) {
+
+            // iterate through the map of the nrc table
             for (Object o : BmiMain.nrc.entrySet()) {
                 Map.Entry current = (Map.Entry) o;
                 if (age >= ((double[]) current.getValue())[0] && age < ((double[]) current.getValue())[1]) {
@@ -44,8 +50,9 @@ public class BmiCalcImpl implements BmiCalc {
             }
         }
 
-        if (sex != null){
-            if (Sex.FEMALE == sex){
+        // check in which weightcategorie the bmi belongs for male or female in the dge table
+        if (sex != null) {
+            if (Sex.FEMALE == sex) {
                 for (Object o : BmiMain.dgeFemale.entrySet()) {
                     Map.Entry current = (Map.Entry) o;
                     if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
@@ -53,7 +60,7 @@ public class BmiCalcImpl implements BmiCalc {
                     }
                 }
             }
-            else if (Sex.MALE == sex){
+            else if (Sex.MALE == sex) {
                 for (Object o : BmiMain.dgeMale.entrySet()) {
                     Map.Entry current = (Map.Entry) o;
                     if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
@@ -62,7 +69,8 @@ public class BmiCalcImpl implements BmiCalc {
                 }
             }
         }
-        else{
+        // check in which weightcategorie the bmi belongs for no gender in the who table
+        else {
             for (Object o : BmiMain.who.entrySet()) {
                 Map.Entry current = (Map.Entry) o;
                 if (bmi >= ((double[]) current.getValue())[0] && bmi < ((double[]) current.getValue())[1]) {
@@ -162,6 +170,7 @@ public class BmiCalcImpl implements BmiCalc {
     public double getIdealWeight() {
         if (size == 0.0) throw new IllegalArgumentException("Please make sure that your size is entered");
 
+        // save the value to change the bmi in reference to the age
         int ageValue = 0;
 
         if (age != 0) {
@@ -173,22 +182,29 @@ public class BmiCalcImpl implements BmiCalc {
             }
         }
 
+        double idealBmi = 0;
+
+        // get the ideal bmi for male and female
         if (sex != null) {
-            double idealBmi = 0;
             if (Sex.FEMALE == sex) {
                 double[] normalBmi = {BmiMain.dgeFemale.get("NORMAL")[0] + (ageValue * -1), BmiMain.dgeFemale.get("NORMAL")[1] + (ageValue * -1)};
+
+                // calculate the average of the borders of the ideal bmi and change the ideal bmi according to the age with the age value
                 idealBmi = ((normalBmi[0] + normalBmi[1]) / 2);
             } else if (Sex.MALE == sex) {
                 double[] normalBmi = {BmiMain.dgeMale.get("NORMAL")[0] + (ageValue * -1), BmiMain.dgeMale.get("NORMAL")[1] + (ageValue * -1)};
+
+                // calculate the average of the borders of the ideal bmi and change the ideal bmi according to the age with the age value
                 idealBmi = ((normalBmi[0] + normalBmi[1]) / 2);
             }
-            return idealBmi * size * size;
         }
         else {
             double[] normalBmi = {BmiMain.dgeMale.get("NORMAL")[0] + (ageValue * -1), BmiMain.dgeMale.get("NORMAL")[1] + (ageValue * -1)};
-            double idealBmi = ((normalBmi[0] + normalBmi[1]) / 2);
 
-            return idealBmi * size * size;
+            // calculate the average of the borders of the ideal bmi and change the ideal bmi according to the age with the age value
+            idealBmi = ((normalBmi[0] + normalBmi[1]) / 2);
         }
+        // calculate the ideal weight with the size and the ideal bmi
+        return idealBmi * size * size;
     }
 }
