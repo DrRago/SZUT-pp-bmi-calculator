@@ -37,9 +37,9 @@ public class BmiMain extends Application {
 
         nrc = getMap("nrc.bmi", new String[] {"1", "0", "-1", "-2", "-3", "-4"});
 
-        dgeMale = getDGE("dge.bmi", "male");
+        dgeMale = getDGE("male");
 
-        dgeFemale = getDGE("dge.bmi", "female");
+        dgeFemale = getDGE("female");
 
         launch(args);
     }
@@ -65,10 +65,10 @@ public class BmiMain extends Application {
         primaryStage.show();
     }
 
-    private static Map<String,double[]> getDGE(String jsonFile, String gender) throws IOException {
+    private static Map<String,double[]> getDGE(String gender) throws IOException {
         Map<String, double[]> dgeMale = new HashMap<>();
 
-        try (FileInputStream is = new FileInputStream(jsonFile) ) {
+        try (FileInputStream is = new FileInputStream("dge.bmi") ) {
             try (JsonReader rdr = Json.createReader(is)) {
 
                 JsonObject obj = rdr.readObject();
@@ -90,7 +90,7 @@ public class BmiMain extends Application {
         return dgeMale;
     }
 
-    private static Map<String, double[]> getMap(String jsonFile, String[] weights) throws IOException {
+    private static Map<String, double[]> getMap(String jsonFile, String[] indexes) throws IOException {
         Map<String, double[]> map = new HashMap<>();
 
         try (FileInputStream is = new FileInputStream(jsonFile) ) {
@@ -98,7 +98,7 @@ public class BmiMain extends Application {
 
                 JsonObject obj = rdr.readObject();
 
-                for (String weight: weights) {
+                for (String weight: indexes) {
 
                     JsonArray results = obj.getJsonArray(weight);
 

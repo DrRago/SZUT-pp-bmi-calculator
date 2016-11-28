@@ -19,7 +19,8 @@ public class Controller {
     @FXML
     private ChoiceBox choiceSex;
 
-    public void buttonActionEvent() {
+    @FXML
+    void buttonActionEvent() {
         if (textWeight.getText().isEmpty() | textSize.getText().isEmpty()){
             errorAlert("Please enter your Size and Weight");
         }
@@ -65,20 +66,20 @@ public class Controller {
     }
 
     void init() {
-        textAge.textProperty().addListener((o, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
+        textAge.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (!"\\d*".matches(newValue)) {
                 textAge.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
 
-        textWeight.textProperty().addListener((o, oldValue, newValue) -> {
+        textWeight.textProperty().addListener((observableValue, oldValue, newValue) -> {
             if (!newValue.matches("[0-9]*[.|,][0-9]*|[0-9]*[.|,]|[0-9]*")) {
                 textWeight.setText(oldValue);
             }
         });
 
 
-        textSize.textProperty().addListener((observable, oldValue, newValue) -> {
+        textSize.textProperty().addListener((observableValue, oldValue, newValue) -> {
             if (!newValue.matches("[0-9]*[.|,][0-9]*|[0-9]*[.|,]|[0-9]*")) {
                 textSize.setText(oldValue);
             }
