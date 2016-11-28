@@ -4,6 +4,6 @@ package de.szut.dqi14.vriesgahr.BMI;
  *
  */
 public enum WeightCategory {
-	UNDERWEIGHT, NORMAL, OVERWEIGHT, 
+	UNDERWEIGHT, NORMAL, OVERWEIGHT,
 	OBESE, SEVERELY_OBESE, VERY_SEVERELY_OBESE
 }
